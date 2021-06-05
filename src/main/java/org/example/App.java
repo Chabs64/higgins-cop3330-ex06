@@ -24,10 +24,41 @@ Again, be sure to convert the input to numerical data before doing any math.
 Don’t hard-code the current year into your program. Get it from the system time via your programming language.
  */
 
-public class App 
+
+import java.util.Date;
+import java.util.Scanner;
+
+import static java.lang.Integer.decode;
+import static java.util.Calendar.YEAR;
+import static java.util.Calendar.getInstance;
+
+public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        Scanner in = new Scanner(System.in);
+
+        System.out.println("What is your current age? ");
+        String cAge = in.nextLine();
+        int cAgenum =  decode(cAge);
+
+        System.out.println("At what age would you like to retire? ");
+        String rAge = in.nextLine();
+        int rAgenum =  decode(rAge);
+
+        StatmentAboutAge(cAgenum, rAgenum);
+
+        StatmentAboutYears(cAgenum, rAgenum);
+
+    }
+
+    private static void StatmentAboutYears(int cAgenum, int rAgenum) {
+        Date time = getInstance().getTime();
+        int year = time.getYear()+1900; //IDK API DOCS DIDNT HELP AT ALL.
+        System.out.println("It's " + year + " , so you can retire in " + (year + (rAgenum - cAgenum)) + "." );
+    }
+
+    private static void StatmentAboutAge(int cAgenum, int rAgenum) {
+        System.out.println("You have " + (rAgenum - cAgenum) + " years left until you can retire.");
     }
 }
